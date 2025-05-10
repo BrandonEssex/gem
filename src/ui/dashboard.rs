@@ -37,7 +37,9 @@ pub fn draw_dashboard<B: Backend>(
 
         let keys = keymap
             .iter()
-            .map(|(k, v)| Spans::from(format!("{} → {}", k, v)))
+            .map(|(context, binding_map)| {
+                Spans::from(format!("{:?} → {:?}", context, binding_map))
+            })
             .collect::<Vec<_>>();
 
         let bottom = Paragraph::new(keys)
