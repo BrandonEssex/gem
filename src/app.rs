@@ -5,7 +5,7 @@ use crate::{
     storage::{ingest::process_incoming_folder, Storage},
     ui::{dashboard::draw_dashboard, gemxmap::render_gemxmap},
 };
-use std::io::{self, stdout};
+use std::io::stdout;
 use tui::{backend::CrosstermBackend, Terminal};
 
 enum ScreenMode {
@@ -26,14 +26,14 @@ pub fn run() -> Result<(), Box<dyn std::error::Error>> {
     terminal.clear()?;
 
     loop {
-        match screen_mode {
+        terminal.draw(|f| match screen_mode {
             ScreenMode::Dashboard => {
-                draw_dashboard(&mut terminal, &storage, &keymap)?;
+                draw_dashboard(f, &storage, &keymap).ok();
             }
             ScreenMode::Mindmap => {
-                render_gemxmap(&mut terminal)?;
+                render_gemxmap(f).ok();
             }
-        }
+        })?;
 
         if let Some(action) = handle_input(&keymap)? {
             match action {

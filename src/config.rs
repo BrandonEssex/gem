@@ -1,5 +1,4 @@
 use std::{collections::HashMap, fs, path::PathBuf};
-use serde::{Deserialize, Serialize};
 
 pub type KeyMap = HashMap<String, HashMap<String, String>>;
 
@@ -10,9 +9,5 @@ pub fn load_keymap() -> KeyMap {
             return cfg;
         }
     }
-    default_keymap()
-}
-
-fn default_keymap() -> KeyMap {
     HashMap::new()
 }

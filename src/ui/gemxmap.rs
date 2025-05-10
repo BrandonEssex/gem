@@ -1,9 +1,8 @@
 use tui::{
     backend::Backend,
-    layout::{Constraint, Direction, Layout},
     style::{Color, Modifier, Style},
-    text::{Span, Spans},
-    widgets::{Block, Borders, Paragraph},
+    text::Span,
+    widgets::{Block, Borders},
     Frame,
 };
 

@@ -1,4 +1,4 @@
-use crate::action::{Action, MindmapAction};
+use crate::action::{Action, MindmapAction::*};
 use crate::config::KeyMap;
 use crossterm::event::{self, Event, KeyCode, KeyModifiers};
 
@@ -9,7 +9,41 @@ pub fn handle_input(keymap: &KeyMap) -> crossterm::Result<Option<Action>> {
             if let Some(map) = keymap.get("mindmap") {
                 for (name, binding) in map {
                     if binding == &key_str {
-                        return Ok(Some(map_mindmap_action(name)));
+                        return Ok(Some(match name.as_str() {
+                            "quit" => Action::Quit,
+                            "unselect" => Action::Mindmap(Unselect),
+                            "scroll_up" => Action::Mindmap(ScrollUp),
+                            "scroll_down" => Action::Mindmap(ScrollDown),
+                            "delete" => Action::Mindmap(Delete),
+                            "select_up" => Action::Mindmap(SelectUp),
+                            "select_down" => Action::Mindmap(SelectDown),
+                            "select_left" => Action::Mindmap(SelectLeft),
+                            "select_right" => Action::Mindmap(SelectRight),
+                            "erase" => Action::Mindmap(Erase),
+                            "create_sibling" => Action::Mindmap(CreateSibling),
+                            "create_child" => Action::Mindmap(CreateChild),
+                            "create_free_node" => Action::Mindmap(CreateFreeNode),
+                            "execute" => Action::Mindmap(Execute),
+                            "drill_down" => Action::Mindmap(DrillDown),
+                            "pop_up" => Action::Mindmap(PopUp),
+                            "jump" => Action::Mindmap(Jump),
+                            "toggle_completed" => Action::Mindmap(ToggleCompleted),
+                            "toggle_hide_completed" => Action::Mindmap(ToggleHideCompleted),
+                            "arrow" => Action::Mindmap(Arrow),
+                            "auto_arrange" => Action::Mindmap(AutoArrange),
+                            "toggle_collapsed" => Action::Mindmap(ToggleCollapsed),
+                            "save" => Action::Mindmap(Save),
+                            "toggle_show_logs" => Action::Mindmap(ToggleShowLogs),
+                            "enter_command" => Action::Mindmap(EnterCommand),
+                            "find_task" => Action::Mindmap(FindTask),
+                            "yank_paste_node" => Action::Mindmap(YankPasteNode),
+                            "raise_selected" => Action::Mindmap(RaiseSelected),
+                            "lower_selected" => Action::Mindmap(LowerSelected),
+                            "search" => Action::Mindmap(Search),
+                            "undo_delete" => Action::Mindmap(UndoDelete),
+                            "help" => Action::Mindmap(Help),
+                            _ => Action::Custom(name.clone()),
+                        }));
                     }
                 }
             }
@@ -39,44 +73,4 @@ fn format_key(code: &KeyCode, mods: KeyModifiers) -> String {
         KeyCode::PageDown => "pgdn".to_string(),
         _ => "".to_string(),
     }
-}
-
-fn map_mindmap_action(name: &str) -> Action {
-    use MindmapAction::*;
-    let act = match name {
-        "quit" => Action::Quit,
-        "unselect" => MindmapAction::Unselect,
-        "scroll_up" => ScrollUp,
-        "scroll_down" => ScrollDown,
-        "delete" => Delete,
-        "select_up" => SelectUp,
-        "select_down" => SelectDown,
-        "select_left" => SelectLeft,
-        "select_right" => SelectRight,
-        "erase" => Erase,
-        "create_sibling" => CreateSibling,
-        "create_child" => CreateChild,
-        "create_free_node" => CreateFreeNode,
-        "execute" => Execute,
-        "drill_down" => DrillDown,
-        "pop_up" => PopUp,
-        "jump" => Jump,
-        "toggle_completed" => ToggleCompleted,
-        "toggle_hide_completed" => ToggleHideCompleted,
-        "arrow" => Arrow,
-        "auto_arrange" => AutoArrange,
-        "toggle_collapsed" => ToggleCollapsed,
-        "save" => Save,
-        "toggle_show_logs" => ToggleShowLogs,
-        "enter_command" => EnterCommand,
-        "find_task" => FindTask,
-        "yank_paste_node" => YankPasteNode,
-        "raise_selected" => RaiseSelected,
-        "lower_selected" => LowerSelected,
-        "search" => Search,
-        "undo_delete" => UndoDelete,
-        "help" => Help,
-        _ => return Action::Custom(name.to_string()),
-    };
-    Action::Mindmap(act)
 }
