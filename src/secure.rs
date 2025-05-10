@@ -2,8 +2,7 @@ use aes_gcm::{
     aead::{Aead, KeyInit},
     Aes256Gcm, Nonce,
 };
-use rand_core::RngCore;
-use rand_core::OsRng;
+use rand_core::{RngCore, OsRng};
 
 pub fn encrypt(plain: &[u8], key: &[u8; 32]) -> Option<Vec<u8>> {
     let cipher = Aes256Gcm::new_from_slice(key).ok()?;

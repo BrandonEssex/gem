@@ -12,8 +12,8 @@ pub fn process_incoming_folder(_storage: &mut Storage) -> std::io::Result<()> {
         let entry = entry?;
         let path = entry.path();
         if path.extension().and_then(|s| s.to_str()) == Some("md") {
-            // Future: parse and convert into Note or Todo
             println!("Ingested: {:?}", path.file_name());
+            // Future: Parse markdown into JSON-backed Note or Todo
         }
     }
 

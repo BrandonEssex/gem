@@ -1,40 +1,54 @@
-# 🧠 gemx v0.0.1
+# 🧠 gemx
 
-A modular terminal-based productivity tool, forked from `void/void-rs`, rebuilt with JSON storage, tagging, and a dashboard-centric TUI interface.
+Terminal-first project, todo, and mindmap management tool inspired by `void-rs`, rebuilt with JSON storage, a shard/tag system, and a full TUI + shortcut layer.
 
-## ✅ Features in v0.0.1
+---
 
-- JSON storage for notes, todos, and projects
-- `shard` (single-category) and `tags` (multi) system
-- Customizable shortcut keymap (via `keymap.json`)
-- `incoming/` folder to ingest `.md` files
-- TUI dashboard with live data and shortcuts
-- Modular codebase: ready for plugin expansion
+## ✨ Features
 
-## 🚀 Usage
+- 📂 JSON-backed Notes, Todos, Projects
+- 🧠 Interactive Mindmap (Keyboard-driven, Shard-aware)
+- 🔐 Secure Mode (AES-GCM encryption)
+- 🎹 Fully Customizable Keyboard Shortcuts
+- 🧩 Plugin-ready architecture
+
+---
+
+## 🧠 Mindmap UI (Shortcuts)
+
+| Action                 | Key        | Action               | Key        |
+|------------------------|------------|----------------------|------------|
+| Move                  | ↑ ↓ ← →    | Collapse/Expand      | Ctrl+T     |
+| Create Child          | Tab        | Create Sibling       | Enter      |
+| Raise / Lower         | Ctrl+G / D | Yank / Paste Node    | Ctrl+Y     |
+| Drill / Pop Up        | Ctrl+W / Q | Export Snapshot      | Ctrl+E     |
+| Search                | Ctrl+U     | Undo Delete          | Ctrl+Z     |
+| Help                  | ?          | Save                 | Ctrl+X     |
+
+---
+
+## 📁 Layout
+
+gemx/
+├── src/
+│ ├── app.rs, main.rs
+│ ├── ui/ → dashboard.rs, gemxmap.rs
+│ ├── storage/ → note.rs, todo.rs, ingest.rs
+│ ├── secure.rs → AES encryption
+├── data/ → saved notes/todos/projects
+├── keymap.json → customizable keymap
+├── settings.json → runtime config
+
+
+---
+
+## 🚀 Run
 
 ```bash
 cargo run
-🗂 Directory Layout
+To enable secure mode:
 
-src/ – Source code (modularized)
-data/ – Stored items (generated on run)
-incoming/ – Drop .md files for ingestion
-keymap.json – Shortcut mappings
-settings.json – Optional global config
-🔧 Default Shortcuts
+cargo run --features secure
+📦 License
 
-Action	Shortcut
-Quit	ctrl+q
-Toggle Help	ctrl+h
-Start Pomodoro	ctrl+p
-Stop Pomodoro	ctrl+s
-Toggle Timer	ctrl+t
-Open Dashboard	ctrl+d
-📦 Future Enhancements
-
-Mindmap view (gemxmap)
-Encryption & secure mode
-Plugin/extension runtime
-Time tracking reports
-MIT License.
+MIT
