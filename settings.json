@@ -1,0 +1,10 @@
+{
+  "keymap": {
+    "quit": "ctrl+q",
+    "toggle_help": "ctrl+h",
+    "start_pomodoro": "ctrl+p",
+    "stop_pomodoro": "ctrl+s",
+    "toggle_timer": "ctrl+t",
+    "dashboard": "ctrl+d"
+  }
+}
