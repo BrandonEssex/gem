@@ -1,4 +1,4 @@
-use crate::action::{Action, MindmapAction::*}; // ✅ FIXED
+use crate::action::{Action, MindmapAction}; // ✅ FIXED: Added correct import
 use crate::config::KeyMap;
 use crossterm::event::{self, Event, KeyCode, KeyModifiers};
 
@@ -22,7 +22,11 @@ pub fn handle_input(keymap: &KeyMap) -> crossterm::Result<Option<Action>> {
 }
 
 fn format_key(code: &KeyCode, mods: KeyModifiers) -> String {
-    let prefix = if mods.contains(KeyModifiers::CONTROL) { "ctrl+" } else { "" };
+    let prefix = if mods.contains(KeyModifiers::CONTROL) {
+        "ctrl+"
+    } else {
+        ""
+    };
     match code {
         KeyCode::Char(c) => format!("{}{}", prefix, c),
         KeyCode::Enter => "enter".into(),
@@ -41,6 +45,7 @@ fn format_key(code: &KeyCode, mods: KeyModifiers) -> String {
 }
 
 fn map_mindmap_action(name: &str) -> MindmapAction {
+    use MindmapAction::*;
     match name {
         "unselect" => Unselect,
         "scroll_up" => ScrollUp,
