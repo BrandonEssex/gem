@@ -21,7 +21,7 @@ pub fn run() -> Result<(), Box<dyn std::error::Error>> {
     let stdout = stdout();
     let backend = CrosstermBackend::new(stdout);
     let mut terminal = Terminal::new(backend)?;
-    let mut screen_mode = ScreenMode::Dashboard;
+    let mut screen_mode = ScreenMode::Mindmap;
 
     terminal.clear()?;
 

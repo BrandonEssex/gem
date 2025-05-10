@@ -1,10 +1,24 @@
 {
-  "keymap": {
-    "quit": "ctrl+q",
-    "toggle_help": "ctrl+h",
-    "start_pomodoro": "ctrl+p",
-    "stop_pomodoro": "ctrl+s",
-    "toggle_timer": "ctrl+t",
-    "dashboard": "ctrl+d"
+  "features": {
+    "plugins": true,
+    "vault": true,
+    "metrics": true,
+    "command_bar": true,
+    "reminders": true,
+    "heatmap": true,
+    "ai": true,
+    "journaling": true
+  },
+  "secure": {
+    "enabled": false
+  },
+  "ui": {
+    "theme": "default",
+    "language": "en",
+    "density": "default",
+    "sync_on_load": true
+  },
+  "workspace": {
+    "default_view": "mindmap"
   }
 }

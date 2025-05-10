@@ -1,0 +1,5 @@
+{
+  "panel_order": ["mindmap", "sidebar", "metrics"],
+  "sidebar": "right",
+  "panel_width": 28
+}

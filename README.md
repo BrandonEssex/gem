@@ -1,54 +1,90 @@
-# 🧠 gemx
+🧠 gemx
 
-Terminal-first project, todo, and mindmap management tool inspired by `void-rs`, rebuilt with JSON storage, a shard/tag system, and a full TUI + shortcut layer.
+gemx is a fast, tree-first, keyboard-driven planning tool built around a powerful mindmap core. Inspired by void-rs, gemx emphasizes clarity, modularity, and speed—built for engineers, writers, and thinkers who organize ideas as living trees.
 
----
+✨ Features
 
-## ✨ Features
+🌳 Mindmap-Centric Core – All content is structured as a tree. The mindmap is always active.
+🎛 Modular Architecture – Plugins, panels, and features can be fully disabled for performance.
+⌨️ Keyboard-Only Control – Inspired by terminal editors, everything is keybind-driven.
+📦 Workspaces & Snapshots – Save, sync, rewind, and version your environments.
+🧩 Plugin Runtime – Load enhancements dynamically with safe sandboxing.
+🔁 Command Mode – Slash (/) and colon (:) command support with autocomplete.
+📅 Calendar, Kanban, Timeline – Optional views for different workstyles.
+📊 Metrics & Journaling – Visualize, track, and document your thinking.
+🧰 Installation
 
-- 📂 JSON-backed Notes, Todos, Projects
-- 🧠 Interactive Mindmap (Keyboard-driven, Shard-aware)
-- 🔐 Secure Mode (AES-GCM encryption)
-- 🎹 Fully Customizable Keyboard Shortcuts
-- 🧩 Plugin-ready architecture
+git clone https://github.com/yourname/gemx.git
+cd gemx
+cargo build --release
+./install.sh
+Then run:
 
----
+gemx
+For minimal mode:
+gemx --headless :mindmap only
+🚀 Quick Start
 
-## 🧠 Mindmap UI (Shortcuts)
+Keybinding	Action
+Ctrl+N	New free-floating node
+Enter	Create sibling node
+Tab	Create child node
+Esc	Unselect node / exit mode
+:	Open command mode
+/	Open slash command editor
+Ctrl+P	Open command palette
+Ctrl+Shift+R	Reload layout/theme
+?	Shortcut help overlay
+🗂 Workspace Structure
 
-| Action                 | Key        | Action               | Key        |
-|------------------------|------------|----------------------|------------|
-| Move                  | ↑ ↓ ← →    | Collapse/Expand      | Ctrl+T     |
-| Create Child          | Tab        | Create Sibling       | Enter      |
-| Raise / Lower         | Ctrl+G / D | Yank / Paste Node    | Ctrl+Y     |
-| Drill / Pop Up        | Ctrl+W / Q | Export Snapshot      | Ctrl+E     |
-| Search                | Ctrl+U     | Undo Delete          | Ctrl+Z     |
-| Help                  | ?          | Save                 | Ctrl+X     |
+~/.config/gemx/
+├── settings.json       # UI + feature toggles
+├── keymap.json         # Customizable shortcuts
+├── themes/             # Theme files (JSON)
+├── workspaces/
+│   └── project_alpha.json
+├── snapshots/
+├── plugins/
+├── vaults/
+└── metrics/
+🔌 Plugin System
 
----
+Plugin Manifest Example
+[plugin]
+name = "Pomodoro"
+entry = "libpomodoro.so"
+version = "0.2.1"
+capabilities = ["sidebar", "on_node_focus"]
+You can enable, disable, and pin plugins via:
 
-## 📁 Layout
+:plugin install ./plugins/pomodoro/
+:plugin config Pomodoro
+🔒 Optional Features
 
-gemx/
-├── src/
-│ ├── app.rs, main.rs
-│ ├── ui/ → dashboard.rs, gemxmap.rs
-│ ├── storage/ → note.rs, todo.rs, ingest.rs
-│ ├── secure.rs → AES encryption
-├── data/ → saved notes/todos/projects
-├── keymap.json → customizable keymap
-├── settings.json → runtime config
+Module	Purpose	Toggle in settings.json
+Plugins	Dynamic extension runtime	features.plugins
+Vaults	Encrypted workspace archiving	features.vault
+Metrics	Node usage tracking + heatmap views	features.metrics
+AI Assist	Local or remote smart commands	features.ai
+Command Bar	Autocomplete shell for navigation	features.command_bar
+📦 Export / Sync / Vault
 
+:workspace export core
+:workspace export full
+:vault build roadmap
+:snapshot rewind <id>
+Use --headless for scripts:
 
----
+gemx --headless ":remind list"
+gemx --headless ":export svg"
+📜 Philosophy
 
-## 🚀 Run
+Everything is a tree 🌲
+Features are enhancements, never assumptions
+Performance-first, visual-second
+Inspired by void-rs, improved for extensibility
+📄 License
 
-```bash
-cargo run
-To enable secure mode:
+MIT License © 2025 [Your Name or Org]
+See LICENSE for full terms.
 
-cargo run --features secure
-📦 License
-
-MIT

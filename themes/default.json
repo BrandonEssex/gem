@@ -1,0 +1,12 @@
+{
+  "background": "black",
+  "accent": "cyan",
+  "highlight": "yellow",
+  "node_border": "rounded",
+  "font_weight": "normal",
+  "styles": {
+    "task": "cyan",
+    "idea": "yellow",
+    "note": "blue"
+  }
+}
