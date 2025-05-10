@@ -5,18 +5,15 @@ use crate::{
     storage::{ingest::process_incoming_folder, Storage},
     ui::dashboard::draw_dashboard,
 };
-use std::io::{self, stdout}; // ✅ Correct import
-use tui::{
-    backend::CrosstermBackend,
-    Terminal,
-};
+use std::io::{self, stdout};
+use tui::{backend::CrosstermBackend, Terminal};
 
 pub fn run() -> Result<(), Box<dyn std::error::Error>> {
     let mut storage = Storage::load_or_init()?;
     process_incoming_folder(&mut storage)?;
 
     let keymap = load_keymap();
-    let stdout = stdout(); // ✅ Correct usage
+    let stdout = stdout();
     let backend = CrosstermBackend::new(stdout);
     let mut terminal = Terminal::new(backend)?;
 
@@ -24,10 +21,11 @@ pub fn run() -> Result<(), Box<dyn std::error::Error>> {
     draw_dashboard(&mut terminal, &storage, &keymap)?;
 
     loop {
-        if let Some(action) = handle_input(&keymap)? {
-            match action {
-                Action::Quit => break,
+        if let Some(action) = handle_input
                 Action::Redraw => draw_dashboard(&mut terminal, &storage, &keymap)?,
+                Action::Mindmap(_mm_action) => {
+                    // Placeholder for routed mindmap interaction
+                }
                 _ => {}
             }
         }
