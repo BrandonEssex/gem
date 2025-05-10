@@ -5,10 +5,10 @@ use tui::{
     style::{Modifier, Style},
     text::{Span, Spans},
     widgets::{Block, Borders, Paragraph},
-    Frame, Terminal,
+    Terminal,
 };
 use crate::storage::Storage;
-use crate::config::KeyMap; // ✅ FIXED (semicolon added)
+use crate::config::KeyMap;
 
 pub fn draw_dashboard<B: Backend>(
     terminal: &mut Terminal<B>,
