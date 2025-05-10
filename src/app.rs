@@ -21,7 +21,9 @@ pub fn run() -> Result<(), Box<dyn std::error::Error>> {
     draw_dashboard(&mut terminal, &storage, &keymap)?;
 
     loop {
-        if let Some(action) = handle_input
+        if let Some(action) = handle_input(&keymap)? {
+            match action {
+                Action::Quit => break,
                 Action::Redraw => draw_dashboard(&mut terminal, &storage, &keymap)?,
                 Action::Mindmap(_mm_action) => {
                     // Placeholder for routed mindmap interaction
