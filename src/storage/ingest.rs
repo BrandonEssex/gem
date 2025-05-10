@@ -2,7 +2,7 @@ use std::fs;
 use std::path::PathBuf;
 use crate::storage::Storage;
 
-pub fn process_incoming_folder(storage: &mut Storage) -> std::io::Result<()> {
+pub fn process_incoming_folder(_storage: &mut Storage) -> std::io::Result<()> {
     let incoming = PathBuf::from("incoming");
     if !incoming.exists() {
         fs::create_dir_all(&incoming)?;

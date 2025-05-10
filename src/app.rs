@@ -5,7 +5,6 @@ use crate::{
     storage::{ingest::process_incoming_folder, Storage},
     ui::dashboard::draw_dashboard,
 };
-use std::io::{self, Stdout};
 use tui::{
     backend::CrosstermBackend,
     Terminal,
@@ -16,7 +15,6 @@ pub fn run() -> Result<(), Box<dyn std::error::Error>> {
     process_incoming_folder(&mut storage)?;
 
     let keymap = load_keymap();
-    let stdout = io::stdout();
     let backend = CrosstermBackend::new(stdout);
     let mut terminal = Terminal::new(backend)?;
 

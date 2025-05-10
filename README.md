@@ -37,10 +37,4 @@ Mindmap view (gemxmap)
 Encryption & secure mode
 Plugin/extension runtime
 Time tracking reports
-MIT License. Built with ❤️ for engineers & thinkers.
-
-
----
-
-✅ **gemx v0.0.1 complete. All modules finalized and delivered.**
-Would you like to begin `v0.0.2` planning or start building toward plugin support and secure mode?
+MIT License.
