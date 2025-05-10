@@ -8,7 +8,7 @@ mod ui;
 mod storage;
 
 fn main() {
-    if let Err(e) = gemx::run() {
+    if let Err(e) = app::run() {
         eprintln!("Application error: {}", e);
     }
 }

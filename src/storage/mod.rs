@@ -3,9 +3,9 @@ pub mod note;
 pub mod project;
 pub mod todo;
 
-use note::Note;
-use project::Project;
-use todo::Todo;
+use self::note::Note;
+use self::project::Project;
+use self::todo::Todo;
 
 pub struct Storage {
     pub notes: Vec<Note>,
