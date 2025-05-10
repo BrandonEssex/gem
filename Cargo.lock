@@ -258,6 +258,7 @@ dependencies = [
  "dirs",
  "lazy_static",
  "libloading",
+ "rand_core",
  "serde",
  "serde_json",
  "tui",
